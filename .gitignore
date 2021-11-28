@@ -1,0 +1,4 @@
+data/*
+songs/*
+*.pyc
+*.code-workspace
