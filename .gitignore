@@ -1,4 +1,6 @@
-data/*
-songs/*
+*.mp3
+*.wav
 *.pyc
+*.csv
 *.code-workspace
+*.vscode
