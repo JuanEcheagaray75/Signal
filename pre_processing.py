@@ -61,13 +61,15 @@ def get_song_data(song_path: str):
     #### Returns:
         - list: Data and sample rate of the WAV file
 
-    Further investigation and testing is needed for this function,
-    I still do not know if the normalization done by librosa is the
-    one that I need.
+    - Librosa loads the audio file as mono by default.
+    - The sampling rate used by default is 22050 Hz, however, given that the
+    files I'm working with on my school project were sampled with 48000 Hz,
+    I decided to use that frequency, in the future I'll set it as an optional
+    parameter for the developer to play with.
     """
     song_name = song_path.split('.')[0]
     path = os.path.join(WAV_DIR, song_name + '.wav')
-    data, sample_rate = librosa.load(path)
+    data, sample_rate = librosa.load(path, sr=48000)
     return data, sample_rate
 
 
