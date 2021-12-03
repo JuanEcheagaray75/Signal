@@ -20,7 +20,9 @@ As of now, this project uses a list of csv files contained in `data\test_data` a
 
 Then it merges the signals to create a mono file, and finally a FFT (Fast Fourier Transform) is performed on the signal. The results are plotted considered a frequency domain of around 20 KHz, then they are saved in `images`.
 
-However, this is just a *beta* version of our project. We plan to implement further features such as:
+## Future Improvements
+
+Keep in mind, this is just a *beta* version of our project. We plan to implement further features such as:
 
 - Numerical matching
 - Capability of receiving a signal from a microphone
