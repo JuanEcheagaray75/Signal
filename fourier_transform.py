@@ -17,10 +17,15 @@ def closest_power_of_two(n):
     return 1 << count
 
 
-# Fast Fourier Transform (fastest boi (vectorized))
+# Implementación vectorizada que hace uso de Numpy, mucho más eficiente y veloz
 def fft_v(x):
+
+    # Converting to numpy array (for efficiency purposes, we intend to use Numba later on)
+    # Get the length of the array
     x = np.asarray(x, dtype=float)
     N = x.shape[0]
+
+    # Check if the length of x is a power of 2, if not, pad with zeros at the end of it
     if np.log2(N) % 1 > 0:
         N = closest_power_of_two(N)
         # Pad with zeros at the end of x
@@ -42,3 +47,23 @@ def fft_v(x):
                        X_even - terms * X_odd])
 
     return X.ravel()
+
+
+# Implementación recursiva clásica de la transformada rápida de fourier
+# propuesta por Cooley-Tukey
+def FFT(x):
+    N = len(x)
+    
+    if N == 1:
+        return x
+    else:
+        X_even = FFT(x[::2])
+        X_odd = FFT(x[1::2])
+        factor = \
+          np.exp(-2j*np.pi*np.arange(N)/ N)
+        
+        X = np.concatenate(\
+            [X_even + factor[:int(N/2)] * X_odd,
+             X_even + factor[int(N/2):] * X_odd])
+        return X
+

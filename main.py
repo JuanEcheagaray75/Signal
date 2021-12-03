@@ -33,10 +33,9 @@ def main():
         plt.ylabel("|Y(k)|")
         filename = csv_file.split(".")[0]
         plt.title("Transformada de Fourier de " + filename)
-        plt.savefig("images\\" + filename + ".png")
+        plt.savefig("images\\" + filename + ".eps", format='eps')
         plt.close()
         
-
 
 print("Iniciando programa")
 main()
