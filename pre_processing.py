@@ -1,12 +1,12 @@
 import os
 import pydub
 import librosa
-import numpy as np
 import pandas as pd
 
 MP3_DIR = "songs\\mp3"
 WAV_DIR = "songs\\wav"
 DATA_DIR = "data"
+TEST_DATA_DIR = "data\\test_data"
 
 
 def get_songs() -> list:
@@ -38,6 +38,8 @@ def convert_to_wav(song_path: str):
         print('Converting ' + song_name + '.mp3 to ' + song_name + '.wav')
         song_path = os.path.join(MP3_DIR, song_path)
         song_wav = pydub.AudioSegment.from_mp3(song_path)
+
+        # Convertir a mono
         song_wav = song_wav.set_channels(1)
         song_wav.export(os.path.join(
             WAV_DIR, song_name + '.wav'), format="wav")
