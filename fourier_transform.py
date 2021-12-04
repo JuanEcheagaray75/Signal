@@ -31,6 +31,8 @@ def fft_v(x):
         # Pad with zeros at the end of x
         x = np.pad(x, (0, N - len(x)), 'constant', constant_values=(0))
 
+    # Checks if N is smaller than 2, if so, an error will be raised
+    # There is no need to perform an FFT on a single point
     N_min = min(N, 2)
 
     n = np.arange(N_min)
@@ -49,21 +51,21 @@ def fft_v(x):
     return X.ravel()
 
 
-# Implementación recursiva clásica de la transformada rápida de fourier
-# propuesta por Cooley-Tukey
+# Classic recursive implementation designed upon Cooley-Tukey's fft algorithm idea
+# The implementation presented above is a vectorized version of this implementation 
+# that runs much faster using Numpy's vector operations
 def FFT(x):
     N = len(x)
-    
+
     if N == 1:
         return x
     else:
+        # Apply FFT to odd and even terms, independently
         X_even = FFT(x[::2])
         X_odd = FFT(x[1::2])
-        factor = \
-          np.exp(-2j*np.pi*np.arange(N)/ N)
-        
-        X = np.concatenate(\
-            [X_even + factor[:int(N/2)] * X_odd,
-             X_even + factor[int(N/2):] * X_odd])
-        return X
 
+        factor = np.exp(-2j * np.pi * np.arange(N) / N)
+
+        # Now we just add up all the factors we obtained
+        X = np.concatenate([X_even + factor[:int(N/2)] * X_odd, X_even + factor[int(N/2):] * X_odd])
+        return X
