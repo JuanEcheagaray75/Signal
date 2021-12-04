@@ -16,7 +16,7 @@ pip install pydub
 
 ## Usage
 
-As of now, this project uses a list of csv files contained in `data\test_data` and the sampling frequency is set to 48 KHz. Our script loops through the directory and converts each `csv` file into a data frame with 2 columns, we are supposing that the files contained a stereo signal.
+As of now, this project uses a list of csv files contained in `data\test_data` (you will have to create this directory) and the sampling frequency is set to 48 KHz. Our script loops through the directory and converts each `csv` file into a data frame with 2 columns, we are supposing that the files contained a stereo signal.
 
 Then it merges the signals to create a mono file, and finally a FFT (Fast Fourier Transform) is performed on the signal. The results are plotted considered a frequency domain of around 20 KHz, then they are saved in `images`.
 
